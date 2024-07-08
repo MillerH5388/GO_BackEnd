@@ -42,7 +42,11 @@ class MySQL{
 
             try {
                 this.conexao.query(query, parameters, (error, result) => {
+
                     if(error) resolve(false)
+                    if(!result.length) resolve(false)
+                    if(result.length == 1) resolve(result[0])
+
                     resolve(result)
                 })
             } catch (error) {

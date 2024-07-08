@@ -22,9 +22,12 @@ const Mysql = require('./servicos/mysql');
 const mysql = new Mysql(process.env.DB_HOST, process.env.DB_PASSWORD, process.env.DB_USER, process.env.DB_DATABASE)
 
 const Crypto = require('./servicos/crypto')
-const crypto = new Crypto(app)
+const crypto = new Crypto(app, process.env.SECRET_KEY)
 
-const servicos = {app, mysql, websocket, crypto}
+const Autenticacao = require('./servicos/autenticacao')
+const autenticacao = new Autenticacao(app, process.env.SECRET_KEY, mysql, crypto)
+
+const servicos = {app, mysql, websocket, crypto, autenticacao}
 
 
 // Modulos

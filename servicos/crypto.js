@@ -1,11 +1,11 @@
 const validateDto = require('../middlewares/validateDto');
-const { cryptoDto } = require('../dto/cryptoDto');
+const { cryptoDto } = require('../dto/crypto/cryptoDto');
 class Crypto{
     
-    constructor(app)
+    constructor(app, secretKey)
     {
         this.crypto = require('crypto');
-        this.secretKey = 'goflow'
+        this.secretKey = secretKey
 
         app.post('/crypto/encrypt',validateDto(cryptoDto), (req, res) => {
             const text = this.encrypt(req.body.text)
