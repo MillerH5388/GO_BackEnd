@@ -8,6 +8,7 @@ class MySQL{
         this.user = user;
         this.port = port
         this.database = database;
+        this.conexao = null;
 
         this.connect()
 
@@ -33,6 +34,23 @@ class MySQL{
                 console.log(err)
             } 
         })
+    }
+
+    query(query, parameters)
+    {
+        return new Promise((resolve,reject) => {
+
+            try {
+                this.conexao.query(query, parameters, (error, result) => {
+                    if(error) resolve(false)
+                    resolve(result)
+                })
+            } catch (error) {
+                resolve(false)
+            }
+
+        })
+        
     }
 
 }
