@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const validateDto = require('../middlewares/validateDto');
-const { loginDto } = require('../dto/autenticacao/loginDto');
+const { loginDto } = require('../dto/autenticacao/loginDto.js');
 class Autenticacao{
 
     constructor(app, secretKey, mysql, crypto)

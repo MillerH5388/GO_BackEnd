@@ -27,7 +27,10 @@ const crypto = new Crypto(app, process.env.SECRET_KEY)
 const Autenticacao = require('./servicos/autenticacao')
 const autenticacao = new Autenticacao(app, process.env.SECRET_KEY, mysql, crypto)
 
-const servicos = {app, mysql, websocket, crypto, autenticacao}
+const Logs = require('./servicos/logs')
+const logs = new Logs(mysql)
+
+const servicos = {app, mysql, websocket, crypto, autenticacao, logs}
 
 
 // Modulos

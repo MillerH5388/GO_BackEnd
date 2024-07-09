@@ -36,7 +36,7 @@ class MySQL{
         })
     }
 
-    query(query, parameters)
+    query(query, parameters, insert)
     {
         return new Promise((resolve,reject) => {
 
@@ -44,8 +44,7 @@ class MySQL{
                 this.conexao.query(query, parameters, (error, result) => {
 
                     if(error) resolve(false)
-                    if(!result.length) resolve(false)
-                    if(result.length == 1) resolve(result[0])
+                    if(!insert && result.length <= 1) resolve(result[0])
 
                     resolve(result)
                 })

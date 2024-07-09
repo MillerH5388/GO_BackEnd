@@ -10,7 +10,6 @@ function validateAccessToken(autenticacao)
 
         const access_token = authHeader.split(' ')[1];
         const usuario = await autenticacao.verificarTokendeAcesso(access_token)
-        console.log(usuario)
         if(!usuario) return res.status(403).json({ message: 'Permissão negada.' });
 
         req.userId = usuario.id
