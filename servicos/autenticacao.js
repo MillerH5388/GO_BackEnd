@@ -23,6 +23,23 @@ class Autenticacao{
             res.status(200).send({ status: true, access_token});
 
         });
+
+        app.get('/autenticacao_access_token', async (req, res) => {
+
+            const access_token = req.query.access_token
+            const usuario = await this.verificarTokendeAcesso(access_token)
+
+            if(!usuario)
+            {
+                res.status(200).send({ status: false});
+            }
+            else
+            {
+                res.status(200).send({ status: true, usuario});
+            }
+
+        })
+
     }
 
     async verificar_credenciais(login, senha)
