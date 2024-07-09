@@ -7,7 +7,7 @@ class Logs{
 
     async registrar_log(id_usuario, descricao, tipo, ip)
     {
-        let log = await this.mysql.query(`INSERT INTO logs (id_usuario, descricao, tipo, ip) VALUES (?, ?, ?, ?)`, [id_usuario, descricao, tipo, ip], true)
+        let log = await this.mysql.query(`INSERT INTO logs_adm (id_usuario, descricao, tipo, ip) VALUES (?, ?, ?, ?)`, [id_usuario, descricao, tipo, ip], true)
         return log
     }
 
