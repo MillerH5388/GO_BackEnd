@@ -7,17 +7,13 @@ class Usuarios{
 
         this.servicos = servicos
 
-        servicos.app.get('/equipe/usuarios', validateAccessToken(servicos.autenticacao), (req, res) => {
+        servicos.app.post('/equipe/usuarios', servicos.multer_upload.any(), validateAccessToken(servicos.autenticacao), async (req, res) => {
 
-            this.lista_usuarios()
-            res.status(200).send({ id: req.userId });
+            const upload = await this.servicos.upload.upload_file('../uploads/usuarios',req.files[0])
 
-        });
+            console.log(upload)
 
-        servicos.app.post('/equipe/usuarios', validateAccessToken(servicos.autenticacao), async (req, res) => {
-
-            const log = await this.servicos.logs.registrar_log(req.userId, `Teste`, `teste`, req.ip)
-            res.status(200).send({ id: req.userId });
+            res.status(200).send({ status: true });
 
         });
 

@@ -3,13 +3,13 @@ const validateDto = require('../middlewares/validateDto');
 const { loginDto } = require('../dto/autenticacao/loginDto.js');
 class Autenticacao{
 
-    constructor(app, secretKey, mysql, crypto)
+    constructor(app, secretKey, mysql, crypto, jsonParser)
     {
         this.secretKey = secretKey
         this.mysql = mysql
         this.crypto = crypto
 
-        app.post('/login',validateDto(loginDto), async (req, res) => {
+        app.post('/login',jsonParser, validateDto(loginDto), async (req, res) => {
 
             const usuario = await this.verificar_credenciais(req.body.login, req.body.senha)
 

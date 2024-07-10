@@ -10,7 +10,7 @@ class Setores{
         this.servicos = servicos
 
         // ROTA DE ADICIONAR SETOR
-        servicos.app.post('/equipe/setores', validateDto(setoresDto),  validateAccessToken(servicos.autenticacao), validatePermissao(servicos.autenticacao, 1),  async (req, res) => {
+        servicos.app.post('/equipe/setores', servicos.jsonParser, validateDto(setoresDto),  validateAccessToken(servicos.autenticacao), validatePermissao(servicos.autenticacao, 1),  async (req, res) => {
             
             const novo_setor = await this.adicionar_setor(req.body.nome)
             if(!novo_setor)

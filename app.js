@@ -3,8 +3,10 @@ require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
+const multer = require('multer');
+const multer_upload = multer();
 const app = express();
-app.use(bodyParser.json());
 app.use(cors());
 
 
@@ -25,12 +27,15 @@ const Crypto = require('./servicos/crypto')
 const crypto = new Crypto(app, process.env.SECRET_KEY)
 
 const Autenticacao = require('./servicos/autenticacao')
-const autenticacao = new Autenticacao(app, process.env.SECRET_KEY, mysql, crypto)
+const autenticacao = new Autenticacao(app, process.env.SECRET_KEY, mysql, crypto, jsonParser)
 
 const Logs = require('./servicos/logs')
 const logs = new Logs(mysql)
 
-const servicos = {app, mysql, websocket, crypto, autenticacao, logs}
+const Upload = require('./servicos/upload')
+const upload = new Upload(app, express, process.env.UPLOAD_DIRECTORY)
+
+const servicos = {app, mysql, websocket, crypto, autenticacao, logs, express, upload, jsonParser, multer_upload}
 
 
 // Modulos
