@@ -83,5 +83,13 @@ class Autenticacao{
         })
     }
 
+    async verificarPermissaoUsuario(id_usuario, id_permissao)
+    {
+        return new Promise(async (resolve,reject) => {
+            const permissao = await this.mysql.query(`SELECT id FROM modulo_permissoes_usuarios WHERE id_modulo_permissao = ? and id_usuario = ?`, [id_permissao, id_usuario])
+            resolve(permissao)
+        })
+    }
+
 }
 module.exports = Autenticacao;

@@ -1,5 +1,6 @@
 const validateAccessToken = require('../../middlewares/validateAccessToken')
 const validateDto = require('../../middlewares/validateDto');
+const validatePermissao = require('../../middlewares/validatePermissao');
 const { setoresDto } = require('../../dto/modulos/equipe/setoresDto');
 
 class Setores{
@@ -9,7 +10,7 @@ class Setores{
         this.servicos = servicos
 
         // ROTA DE ADICIONAR SETOR
-        servicos.app.post('/equipe/setores', validateDto(setoresDto),  validateAccessToken(servicos.autenticacao), async (req, res) => {
+        servicos.app.post('/equipe/setores', validateDto(setoresDto),  validateAccessToken(servicos.autenticacao), validatePermissao(servicos.autenticacao, 1),  async (req, res) => {
             
             const novo_setor = await this.adicionar_setor(req.body.nome)
             if(!novo_setor)

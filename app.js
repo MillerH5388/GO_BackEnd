@@ -34,8 +34,8 @@ const servicos = {app, mysql, websocket, crypto, autenticacao, logs}
 
 
 // Modulos
-const ModuloEquipe = require('./modulos/equipe/modulo')
-const moduloEquipe = new ModuloEquipe(servicos)
+const Modulos = require('./modulos/modulos')
+const modulos = new Modulos(servicos)
 
 server.listen(process.env.PORT, async () => 
 {
