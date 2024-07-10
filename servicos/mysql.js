@@ -36,7 +36,7 @@ class MySQL{
         })
     }
 
-    query(query, parameters, insert)
+    query(query, parameters, insert, vetor_formato)
     {
         return new Promise((resolve,reject) => {
 
@@ -48,8 +48,8 @@ class MySQL{
                         console.log(error)
                         resolve(false)
                     } 
-                    if(!insert && result.length <= 1) resolve(result[0])
-
+                    if(!insert && result.length <= 1 && !vetor_formato) resolve(result[0])
+                    
                     resolve(result)
                 })
             } catch (error) {

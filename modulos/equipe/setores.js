@@ -30,7 +30,7 @@ class Setores{
     {
         return new Promise(async (resolve,reject) => {
 
-            const novo_setor = await this.servicos.mysql.query(`INSERT INTO setores (nome) VALUES (?)`, [nome], true)
+            const novo_setor = await this.servicos.mysql.query(`INSERT INTO setores (nome) VALUES (?)`, [nome], true, false)
             resolve(novo_setor)
         })
     }

@@ -29,7 +29,7 @@ class Modulos{
     async lista_modulos()
     {
         return new Promise(async (resolve,reject) => {
-            const modulos = await this.servicos.mysql.query(`SELECT * FROM modulos`, [], false)
+            const modulos = await this.servicos.mysql.query(`SELECT * FROM modulos`, [], false, true)
             resolve(modulos)
         })
     }
@@ -37,7 +37,7 @@ class Modulos{
     async lista_permissoes()
     {
         return new Promise(async (resolve,reject) => {
-            const permissoes = await this.servicos.mysql.query(`SELECT * FROM modulo_permissoes`, [], false)
+            const permissoes = await this.servicos.mysql.query(`SELECT * FROM modulo_permissoes`, [], false, true)
             resolve(permissoes)
         })
     }
