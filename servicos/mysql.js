@@ -43,12 +43,17 @@ class MySQL{
             try {
                 this.conexao.query(query, parameters, (error, result) => {
 
-                    if(error) resolve(false)
+                    if(error)
+                    {
+                        console.log(error)
+                        resolve(false)
+                    } 
                     if(!insert && result.length <= 1) resolve(result[0])
 
                     resolve(result)
                 })
             } catch (error) {
+                console.log(error)
                 resolve(false)
             }
 

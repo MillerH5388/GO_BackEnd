@@ -47,7 +47,7 @@ class Upload{
         })
     }
 
-    async isImageFile(file)
+    isImageFile(file)
     {
         return (file.mimetype.startsWith('image/'))
     }
@@ -55,6 +55,13 @@ class Upload{
     fileExists(arquivo)
     {
         return fs.existsSync(path.join(__dirname,arquivo))
+    }
+
+    verifica_foto_body(files, nome)
+    {
+        if(!files) return false
+        const foto = files.find(file => file.fieldname == nome)
+        return foto
     }
 
 
